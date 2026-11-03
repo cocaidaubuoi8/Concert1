@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>Concert Online – Quẩy cùng nhau</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<canvas id="game"></canvas>
+<div id="screen" hidden><div id="ytp"></div><button id="btnPlayVideo" hidden>▶ Bấm để bật video &amp; tiếng</button></div>
+
+<!-- HUD trong concert -->
+<div id="hud" hidden>
+  <div id="hud-top">
+    <div class="pill" id="hudMe"><span id="hudName">Bạn</span><b id="hudPts">⭐ 0</b></div>
+    <div class="pill center"><span id="hudTheme">Neon Pop</span><small id="hudNow"></small><small id="hudTimer">--:--</small></div>
+    <div class="right">
+      <div class="pill" id="hudOnline">👥 1</div>
+      <button class="icon" id="btnMusic" title="Nhạc & video trên màn hình">🎵</button>
+      <button class="icon" id="btnSound" title="Bật/tắt nhạc (M)">🔊</button>
+      <button class="icon" id="btnWardrobe" title="Tủ đồ & cửa hàng">👕</button>
+    </div>
+  </div>
+  <div id="musicPanel" hidden>
+    <b>🎵 Màn hình sân khấu (YouTube)</b>
+    <form id="musicForm" autocomplete="off"><input id="ytUrl" placeholder="Dán link YouTube…"><button type="submit">Thêm</button></form>
+    <div class="mrow"><small id="queueInfo"></small><button type="button" id="btnSkip">⏭ Bài tiếp</button></div>
+  </div>
+  <div id="hud-bottom">
+    <div id="dancebar"></div>
+    <form id="chatForm" autocomplete="off"><input id="chatInput" maxlength="60" placeholder="Nhấn Enter để chat…"></form>
+    <div id="hint">WASD / bấm chuột: đi lại<br>Bấm ghế hoặc phím E: ngồi / đứng<br>Phím 1–5: quẩy • Enter: chat<br>Nhặt ⭐ trên sàn để lấy điểm • M: tắt nhạc</div>
+  </div>
+</div>
+
+<div id="banner" hidden><small>CHỦ ĐỀ MỚI</small><b id="bannerName"></b></div>
+<div id="toasts"></div>
+
+<!-- Menu tạo nhân vật / cửa hàng -->
+<div id="menu" class="overlay">
+  <div class="panel">
+    <header>
+      <h1>🎤 Concert <span>Online</span></h1>
+      <div id="menuPts" class="pts">⭐ 0</div>
+    </header>
+    <div class="body">
+      <section class="left">
+        <canvas id="preview" width="300" height="340"></canvas>
+        <div id="previewDance"></div>
+        <label class="nameLabel">Tên nhân vật
+          <input id="nameInput" maxlength="14" placeholder="Nhập tên…">
+        </label>
+      </section>
+      <section class="right">
+        <div class="tabs">
+          <button data-tab="look" class="on">🧑 Nhân vật</button>
+          <button data-tab="shop">🛍️ Cửa hàng & Tủ đồ</button>
+        </div>
+        <div id="tab-look" class="tab"></div>
+        <div id="tab-shop" class="tab" hidden>
+          <div id="cats"></div>
+          <div id="grid"></div>
+          <p class="note">Bấm vào hình để <b>thử đồ</b>. Món chưa mua sẽ không được lưu. Kiếm ⭐ bằng cách quẩy, nhặt sao và ở lại concert!</p>
+        </div>
+      </section>
+    </div>
+    <footer>
+      <button id="btnEnter" class="big" disabled>Đang kết nối…</button>
+      <button id="btnResume" class="big" hidden>💾 Lưu & quay lại concert</button>
+      <button id="btnLeave" class="ghost" hidden>🚪 Rời concert</button>
+    </footer>
+  </div>
+</div>
+
+<div id="conn" hidden>Mất kết nối… đang thử lại</div>
+
+<script src="shared.js"></script>
+<script src="character.js"></script>
+<script src="scene.js"></script>
+<script src="audio.js"></script>
+<script src="youtube.js"></script>
+<script src="game.js"></script>
+</body>
+</html>
